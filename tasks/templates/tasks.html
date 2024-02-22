@@ -2,4 +2,20 @@
 
 {% block content %}
     <h1>Tasks</h1>
+    <ul>
+    {% for task in tasks %}
+        <li>
+            <a href="{% url 'view_task' task.id %}">
+            {% if task.important %}
+                <h2>{{ task.title }}</h2>
+            {% else %}
+                <h3>{{ task.title }}</h3>
+            {% endif %}
+            </a>
+            <p>{{ task.description}}</p>
+            <p>{{ task.user.username}}</p>
+            <p>{{ task.date_completed|date:'M j Y:i' }}</p>
+        </li>
+    {% endfor %}
+    </ul>
 {% endblock %}
